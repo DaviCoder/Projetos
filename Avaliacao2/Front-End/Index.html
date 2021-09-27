@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+    <div class="container">
+        <hr>
+        <h1 class="display-3">Rede de distribuição de bebidas</h1>
+        <hr>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCadastrar">
+            Cadastrar Cliente
+        </button>
+        <br>
+        <br>       
+
+        <div class="container-fluid">
+            <table class="table table-primary table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID do cliente</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal para editar clientes -->
+    <div class="modal fade" id="ModalEditar" tabindex="-1" aria-labelledby="ModalEditarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalEditarLabel">Editar cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label for="ClientIdEditar" class="form-label">Id:</label>
+                        <input type="number" disabled="true" class="form-control" id="ClientIdEditar">
+                        <div class="mb-3">
+                            <label for="NomeEditar" class="form-label">Nome:</label>
+                            <input type="text" class="form-control" id="NomeEditar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="DocumentoEditar" class="form-label">Documento:</label>
+                            <input type="number" class="form-control" id="DocumentoEditar">
+                            <p style="color: red;" id="AlertaTamanho" hidden>O documento precisa ter 11 digitos (CPF) ou 15 digitos(CNPJ): apenas numeros</p>
+                        </div>                
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p style="color: red;" id="AlertaEditar" hidden>Preencha todos os campos!!</p>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" onclick="EditarCliente()">Editar</button>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Modal para cadastrar cliente -->
+    <div class="modal fade" id="ModalCadastrar" tabindex="-1" aria-labelledby="ModalCadastrarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalCadastrarLabel">Cadastrar novo cliente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="mb-3">
+                            <label for="Nome" class="form-label">Nome:</label>
+                            <input type="text" class="form-control" id="Nome">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Documento" class="form-label">Documento:</label>
+                            <input type="number" class="form-control" id="Documento">
+                            <p style="color: red;" id="AlertaDocumento" hidden>o documento deve ter 11 digitos (CPF) ou 15 digitos(CNPJ)</p>
+                        </div>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="Cep" class="form-label">Cep:</label>
+                            <input type="text" class="form-control" id="Cep">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Rua" class="form-label">Rua:</label>
+                            <input type="text" class="form-control" id="Rua">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Bairro" class="form-label">Bairro:</label>
+                            <input type="text" class="form-control" id="Bairro">
+                        </div>
+                        <div class="mb-3">
+                            <label for="NumeroCasa" class="form-label">Numero do endereço:</label>
+                            <input type="text" class="form-control" id="NumeroCasa">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Municipio" class="form-label">Municipio:</label>
+                            <input type="text" class="form-control" id="Municipio">
+                        </div>
+                        <div class="mb-3">
+                            <label for="EnderecoTipo" class="form-label">enderecoTipo:</label>
+                            <select id="EnderecoTipo" class="form-control">
+                                <option value="0" selected>Cobrança</option>
+                                <option value="1">Comercial</option>
+                                <option value="2">Correspondencia</option>
+                                <option value="3">Entrega</option>
+                                <option value="4">Residencial</option>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="NumeroTelefone" class="form-label">Numero de telefone:</label>
+                            <input type="text" class="form-control" id="NumeroTelefone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="TelefoneTipo" class="form-label">Tipo do telefone:</label>
+                            <select id="TelefoneTipo" class="form-control">
+                                <option value="0" selected>Celular</option>
+                                <option value="1">Residencial</option>
+                                <option value="2">Comercial</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <p style="color: red;" id="AlertaCadastrar" hidden>Preencha todos os campos!!</p>
+                <p style="color: red;" id="AlertaErro" hidden>Algum campo esta errado!</p>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning" onclick="LimparCamposCadastro()">Limpar</button>
+                    <button type="submit" class="btn btn-success" onclick="Cadastrar()">Cadastrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Modal visualizar dados do cliente -->
+    <div class="modal fade" id="ModalVisualizar" tabindex="-1" aria-labelledby="ModalVisualizarLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalVisualizarLabel">Dados do cliente:</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card" style="width: 100%;">
+                        <img id="ImgAleatorio" src="" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" id="VisualizarNome"></h5>
+                            <input id="VisualizarId" class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                            <input id="VisualizarDocumento" class="form-control" type="text" value="" aria-label="Disabled input example" disabled readonly>
+                        </div>
+                        <ul class="list-group list-group-flush" >
+                            <div class="container" id="ListaEnderecos">
+                                
+                            </div>
+                        </ul>
+                            <ul class="list-group list-group-flush" >
+                                <div class="container" id="ListarTelefones">
+                                    
+                                </div>
+                            </ul>   
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</html>
