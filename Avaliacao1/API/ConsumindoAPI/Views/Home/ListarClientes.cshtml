@@ -1,0 +1,30 @@
+﻿@{ Layout = "_Layout"; }
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="container">
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Porte da empresa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in ViewData["CLientes"] as List<Cliente>)
+            {
+                <tr>
+                    <td>@cliente.ClienteId</td>
+                    <td>@cliente.Nome</td>
+                    <td>@cliente.PorteEmpresa</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
+

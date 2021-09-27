@@ -1,0 +1,29 @@
+@model WebApplication.Models.Cliente
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Adicionando um novo cliente</h2>
+<form asp-action="AdicionarCliente" method="post">
+    <div class="form-group">
+        <label asp-for="Nome" class="col-form-label"></label>
+        <input asp-for="Nome" class="form-control">
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PorteEmpresa" class="col-form-label">Porte da empresa</label>
+        <select asp-for="PorteEmpresa" class="form-control">
+            <option value="Pequeno" class="custom-select-sm">Pequeno</option>
+            <option value="Medio" class="custom-select-sm">Medio</option>
+            <option value="Grande" class="custom-select-sm">Grande</option>
+        </select>
+        <span asp-validation-for="PorteEmpresa" class="text-danger"></span>
+    </div>
+    
+    <input type="submit" value="Salvar" class="btn btn-primary">
+    <br/><br/>
+    <a asp-action="Index" class="btn btn-link">Voltar ao Index</a>
+    
+</form>

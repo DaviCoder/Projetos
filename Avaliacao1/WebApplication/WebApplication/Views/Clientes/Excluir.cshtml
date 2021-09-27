@@ -1,0 +1,17 @@
+@model Cliente
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Excluir cliente @Model.Nome com o ID:@Model.ClienteId</h2>
+
+
+<form asp-action="Excluir" method="post">
+    <input type="hidden" asp-for="ClienteId"/>
+    <input type="submit" class="btn btn-danger" value="Excluir"/>
+</form>
+<br/>
+<br/>
+<a asp-action="Index" class="btn btn-link">Voltar</a>

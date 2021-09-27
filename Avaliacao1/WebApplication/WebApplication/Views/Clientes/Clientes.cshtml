@@ -1,0 +1,15 @@
+@model WebApplication.ViewModels.ClientesViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Modo simplificado da lista de clientes</h2>
+
+<div class="alert alert-info">
+    @foreach (var item in Model.Clientes)
+    {
+        <p class="alert alert-dark">@item.ToString()</p>
+    }
+</div>

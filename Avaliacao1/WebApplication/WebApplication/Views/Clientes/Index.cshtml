@@ -1,0 +1,37 @@
+@model IEnumerable<WebApplication.Models.Cliente>
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Tabela de Clientes</h2>
+
+<a asp-action="AdicionarCliente" class="btn btn-primary">Adicionar novo cliente</a>
+
+<div class="container">
+    <table class="table">
+        
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Porte</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>@cliente.ClienteId</td>
+                <td>@cliente.Nome</td>
+                <td>@cliente.PorteEmpresa</td>
+                <td>
+                    <a asp-action="Atualizar" asp-route-id="@cliente.ClienteId" class="btn btn-info">Atualizar</a>
+                    <a asp-action="Excluir" asp-route-id="@cliente.ClienteId" class="btn btn-warning">Excluir</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+        
+    </table>
+</div>

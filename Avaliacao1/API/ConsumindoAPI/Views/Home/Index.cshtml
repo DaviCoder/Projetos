@@ -1,0 +1,100 @@
+﻿@model API.Models.Cliente
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Consumindo a API</h1>
+    <h3 >Escolha uma das ações</h3>
+    <br />
+
+    @{
+        if(ViewData["Erro"] != null)
+        {
+            <p>@ViewData["Erro"]</p>
+        }
+    }
+
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm border border-dark shadow shadow-sm">
+                <h5 class="modal-title"> Listar os clientes</h5>
+                <form>
+                    <button class="btn btn-primary" asp-action="ListarClientes">Listar Clientes</button>
+                </form>
+            </div>
+            <div class="col-sm border border-dark shadow shadow-sm">
+                <h5 class="modal-title"> Buscar por um cliente</h5>
+                <form asp-action="BuscarCliente" method="get">
+                    <div class="form-group">
+                        <label asp-for="ClienteId" class="col-form-label"> Digite o ID do cliente</label>
+                        <input asp-for="ClienteId" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Procurar por um cliente</button>
+                </form>
+            </div>
+            <div class="col-sm border border-dark shadow shadow-sm">
+                <h5 class="modal-title"> Remover um cliente</h5>
+                <form asp-action="RemoverCliente" method="get">
+                    <div class="form-group">
+                        <label asp-for="ClienteId" class="col-form-label"> Digite o ID do cliente</label>
+                        <input asp-for="ClienteId" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Remove cliente</button>
+                </form>
+            </div>
+            <div class="col-sm border border-dark shadow shadow-sm">
+                <h5 class="modal-title"> Adicionar um cliente</h5>
+                <form asp-action="AdicionarCliente" method="post">
+                    <div class="form-group">
+                        <label asp-for="Nome" class="col-form-label"> Digite o nome do cliente</label>
+                        <input asp-for="Nome" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PorteEmpresa" class="col-form-label"> Digite o porte da empresa do cliente</label>
+                        <select asp-for="PorteEmpresa" class="form-control">
+                            <option value="Pequeno" class="custom-select-sm">Pequeno</option>
+                            <option value="Medio" class="custom-select-sm">Medio</option>
+                            <option value="Grande" class="custom-select-sm">Grande</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Adicionar cliente</button>
+                </form>
+            </div>
+            <div class="col-sm border border-dark shadow shadow-sm">
+                <h5 class="modal-title">Atualizar um cliente</h5>
+                <form asp-action="AtualizarCliente" method="post">
+                    <div class="form-group">
+                        <label asp-for="ClienteId" class="col-form-label"> Digite o ID do cliente</label>
+                        <input asp-for="ClienteId" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Nome" class="col-form-label"> Digite o nome do cliente</label>
+                        <input asp-for="Nome" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PorteEmpresa" class="col-form-label"> Digite o porte da empresa do cliente</label>
+                        <select asp-for="PorteEmpresa" class="form-control">
+                            <option value="Pequeno" class="custom-select-sm">Pequeno</option>
+                            <option value="Medio" class="custom-select-sm">Medio</option>
+                            <option value="Grande" class="custom-select-sm">Grande</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Atualizar cliente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+</div>
