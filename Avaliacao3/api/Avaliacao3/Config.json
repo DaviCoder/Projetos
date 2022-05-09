@@ -1,0 +1,8 @@
+﻿{
+  "Host": "",
+  "Database": "",
+  "User": "",
+  "Port": "5432",
+  "Password": "",
+  "nameSql": 0
+}
